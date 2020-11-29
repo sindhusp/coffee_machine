@@ -25,7 +25,7 @@ Hi! This project describes a working **CoffeeMachine** that adheres to the follo
 1. In the project dir, run `mvn clean package` to build the jar. 
 2. Once done, cd to `target` folder. Run `java -jar coffee_machine-1.0-SNAPSHOT.jar` to run with the sample test case provided with the project. 
 3. To run any other test case, edit the file `src/main/resources/config/sample.json`. 
-4. Alternatively, you can add a test case json file to the `src/main/resources/config` directory and invoke the jar with the filename argument.  For example, to invoke the jar with file `src/main/resources/test2.json`, run `java -jar coffee_machine-1.0-SNAPSHOT.jar config/test2.json`
+4. Alternatively, you can add a test case json file to the `src/main/resources/config` directory and invoke the jar with the filename argument.  For example, to invoke the jar with file `src/main/resources/config/test2.json`, run `java -jar coffee_machine-1.0-SNAPSHOT.jar config/test2.json`
 
 
 # Components
