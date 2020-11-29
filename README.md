@@ -50,6 +50,6 @@ This class monitors periodically whether any ingredient is running low and sends
 
 This is a tester class that runs various CoffeeMachine configs on our CoffeeMachine so that we can see different test cases operating on it producing different outputs. 
 
-### A word on testing
+# A word on testing
 
 The problem statement for this project repeatedly specified that the ask is to write `functional integration test cases`. Writing functional tests without using tools like Selenium proved to be a challenge in the given timeframe of our project, since I didn't think spinning up a server just for Selenium integration was a great idea; it seemed like an overkill. Alternatively, I provided functional test cases using the `CoffeeMachineRunner` class which runs them one after the other. I hope this is acceptable. This is also why I skipped unit test cases using Junit. I could have written them, but considering that we have functional tests in this format, they didn't seem necessary. 
