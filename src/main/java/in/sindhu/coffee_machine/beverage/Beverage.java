@@ -1,6 +1,9 @@
 package in.sindhu.coffee_machine.beverage;
 
-import in.sindhu.coffee_machine.IngredientManager;
+import static in.sindhu.coffee_machine.util.Util.printWithStats;
+
+import in.sindhu.coffee_machine.Constants;
+import in.sindhu.coffee_machine.ingredients.IngredientManager;
 import in.sindhu.coffee_machine.exceptions.BeverageException;
 import in.sindhu.coffee_machine.exceptions.InsufficientIngredientException;
 import java.util.Map;
@@ -8,21 +11,18 @@ import java.util.Map;
 public class Beverage {
   private final String name;
   private final Map<String, Integer> ingredients;
-  private final IngredientManager ingredientManager;
 
   public Beverage(
       String name,
-      Map<String, Integer> ingredients,
-      IngredientManager ingredientManager) {
+      Map<String, Integer> ingredients) {
     this.name = name;
     this.ingredients = ingredients;
-    this.ingredientManager = ingredientManager;
   }
 
-  public void make() throws BeverageException {
+  public void make(IngredientManager ingredientManager) throws BeverageException {
     try {
       ingredientManager.fetchIngredients(ingredients);
-      // beverage is made. Dispense beverage
+      // Beverage is made. Dispense beverage
       dispense();
     } catch (InsufficientIngredientException t) {
       throw new BeverageException(name, t);
@@ -30,6 +30,11 @@ public class Beverage {
   }
 
   private void dispense() {
-    System.out.println(String.format("%s is prepared. Enjoy :)\n", name));
+    printWithStats(String.format(Constants.BEVERAGE_PREPARED_MSG, name));
   }
+
+  public String getName() {
+    return name;
+  }
+
 }

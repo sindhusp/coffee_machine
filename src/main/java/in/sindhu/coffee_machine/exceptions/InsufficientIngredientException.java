@@ -1,8 +1,8 @@
 package in.sindhu.coffee_machine.exceptions;
 
+import in.sindhu.coffee_machine.Constants;
+
 public class InsufficientIngredientException extends Exception {
-  private static final String INSUFFICIENT_INGREDIENT_MSG =
-      "Insufficient ingredient %s. Needed %d units but only %d units were available.";
 
   private String ingredientName;
   private Integer requestedAmount;
@@ -29,7 +29,7 @@ public class InsufficientIngredientException extends Exception {
       Integer requestedAmount,
       Integer availableAmount) {
     return String.format(
-        INSUFFICIENT_INGREDIENT_MSG, ingredientName, requestedAmount, availableAmount);
+        Constants.INSUFFICIENT_INGREDIENT_MSG, ingredientName, requestedAmount, availableAmount);
   }
 
   public String getIngredientName() {

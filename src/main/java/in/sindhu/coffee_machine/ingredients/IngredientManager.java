@@ -1,4 +1,4 @@
-package in.sindhu.coffee_machine;
+package in.sindhu.coffee_machine.ingredients;
 
 import in.sindhu.coffee_machine.exceptions.InsufficientIngredientException;
 import java.util.Map;
@@ -6,14 +6,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 //Singleton
 public class IngredientManager {
-  private ConcurrentHashMap<String, Integer> ingredientStore;
+  private final ConcurrentHashMap<String, Integer> ingredientStore;
 
-  public IngredientManager() {
-    this.ingredientStore = new ConcurrentHashMap<>();
-  }
-
-  public void loadIngredients(Map<String, Integer> ingredients) {
-    ingredientStore = new ConcurrentHashMap<>(ingredients);
+  public IngredientManager(Map<String, Integer> ingredients) {
+    this.ingredientStore = new ConcurrentHashMap<>(ingredients);
   }
 
   public synchronized void fetchIngredients(Map<String, Integer> requestedIngredients)
@@ -23,7 +19,7 @@ public class IngredientManager {
     }
 
     // All the requested ingredientStore are present if the code reaches here. Lets recalibrate the
-    // store and take these ingredientStore
+    // store and take these ingredients to make our beverage.
     requestedIngredients.forEach((key, value) -> {
       Integer present = ingredientStore.get(key);
       ingredientStore.put(key, present - value);
@@ -55,7 +51,11 @@ public class IngredientManager {
     if (availableAmount < requestedAmount) {
       throw new InsufficientIngredientException(name, requestedAmount, availableAmount);
     }
-    // the ingredient is present if the code reaches here.
+    // the ingredient is present if the code reaches here. return
   }
 
+  //TODO: fill out stub
+  public void refillIngredient(String name, Integer amountBeingAdded) {
+
+  }
 }
