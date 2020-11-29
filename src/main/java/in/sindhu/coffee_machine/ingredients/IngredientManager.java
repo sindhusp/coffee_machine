@@ -2,6 +2,7 @@ package in.sindhu.coffee_machine.ingredients;
 
 import in.sindhu.coffee_machine.exceptions.InsufficientIngredientException;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 
 //Singleton
@@ -54,8 +55,29 @@ public class IngredientManager {
     // the ingredient is present if the code reaches here. return
   }
 
-  //TODO: fill out stub
-  public void refillIngredient(String name, Integer amountBeingAdded) {
+  //this method is package private so that Beverages can't access this method.
+  ConcurrentHashMap<String, Integer> getIngredientStore() {
+    return ingredientStore;
+  }
 
+  public void refillIngredient(String name, Integer amountBeingAdded) {
+    ingredientStore.put(name, ingredientStore.get(name) + amountBeingAdded);
+  }
+
+  //Triggered by IngredientMonitor.
+  void processRefilling() {
+    Scanner in = new Scanner(System.in);
+    String s = in.nextLine();
+    if ("Y".equalsIgnoreCase(s)) {
+      System.out.println(IngredientMonitor.ENTER_INGREDIENT_NAME_MSG);
+    }
+    String ingName = in.nextLine();
+    System.out.println(String.format(IngredientMonitor.YOU_ARE_REFILLING_MSG, ingName));
+
+    Long amountToAdd = in.nextLong();
+    //TODO: Add validation to the amount here
+
+    refillIngredient(ingName, amountToAdd != null ? amountToAdd.intValue() : 0);
+    System.out.println(String.format(IngredientMonitor.INGREDIENT_IS_REFILLED_MSG, ingName, getIngredientStore().get(ingName)));
   }
 }

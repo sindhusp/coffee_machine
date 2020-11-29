@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import in.sindhu.coffee_machine.config.CoffeeMachineConfig;
 import in.sindhu.coffee_machine.exceptions.BeverageException;
 import in.sindhu.coffee_machine.ingredients.IngredientManager;
+import in.sindhu.coffee_machine.ingredients.IngredientMonitor;
 import in.sindhu.coffee_machine.util.Util;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,6 +37,7 @@ public class CoffeeMachine {
     printWelcome();
     CoffeeMachineConfig config = fetchMachineConfig(configLocation);
     IngredientManager ingredientManager = new IngredientManager(config.getTotalIngredients());
+    IngredientMonitor ingredientMonitor = new IngredientMonitor(ingredientManager);
     ExecutorService executorService = Executors.newFixedThreadPool(config.getOutlets());
 
     config.getBeverages()
@@ -48,8 +50,6 @@ public class CoffeeMachine {
             Util.printWithStats(t.getMessage());
           }
         }));
-
-    //TODO: Add an ingredient watcher
   }
 
   private static CoffeeMachineConfig fetchMachineConfig(String fileName)

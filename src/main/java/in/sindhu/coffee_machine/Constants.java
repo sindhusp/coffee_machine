@@ -8,4 +8,6 @@ public class Constants {
   public static final String INSUFFICIENT_INGREDIENT_MSG =
       "Insufficient ingredient %s. Needed %d units but only %d units were available.\n";
   public static final String WELCOME_MSG = "\n\n========================== Starting Coffee Machine ========================== \n";
+  public static final String LOAD_STORE = "IngredientMonitor says: Please load ingredients";
+  public static final String INGREDIENT_S_IS_RUNNING_LOW_PLZ_REFILL = "IngredientMonitor says: Ingredient %s is running low. Plz enter Y to refill.";
 }
