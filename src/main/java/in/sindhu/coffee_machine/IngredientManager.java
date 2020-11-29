@@ -9,7 +9,11 @@ public class IngredientManager {
   private ConcurrentHashMap<String, Integer> ingredientStore;
 
   public IngredientManager() {
-    this.ingredientStore = new ConcurrentHashMap<String, Integer>();
+    this.ingredientStore = new ConcurrentHashMap<>();
+  }
+
+  public void loadIngredients(Map<String, Integer> ingredients) {
+    ingredientStore = new ConcurrentHashMap<>(ingredients);
   }
 
   public synchronized void fetchIngredients(Map<String, Integer> requestedIngredients)
