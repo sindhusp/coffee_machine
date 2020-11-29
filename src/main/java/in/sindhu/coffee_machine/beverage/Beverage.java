@@ -36,5 +36,4 @@ public class Beverage {
   public String getName() {
     return name;
   }
-
 }

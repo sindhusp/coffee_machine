@@ -19,14 +19,21 @@ public class CoffeeMachine {
 
   public static void main(String[] args) {
     try {
-      printWelcome();
-      run("config/sample.json");
+      run(getConfigLocation(args));
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
-  private static void run(String configLocation) throws IOException {
+  private static String getConfigLocation(String[] args) throws IOException {
+    if (args.length > 0) {
+      return args[0];
+    }
+    return "config/sample.json";
+  }
+
+  static void run(String configLocation) throws IOException {
+    printWelcome();
     CoffeeMachineConfig config = fetchMachineConfig(configLocation);
     IngredientManager ingredientManager = new IngredientManager(config.getTotalIngredients());
     ExecutorService executorService = Executors.newFixedThreadPool(config.getOutlets());
