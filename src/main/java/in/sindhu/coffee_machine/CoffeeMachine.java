@@ -48,6 +48,7 @@ public class CoffeeMachine {
             Util.printWithStats(t.getMessage());
           }
         }));
+
     //TODO: Add an ingredient watcher
   }
 
@@ -58,5 +59,4 @@ public class CoffeeMachine {
     Reader reader = new InputStreamReader(in, "UTF-8");
     return GSON.fromJson(reader, CoffeeMachineConfig.class);
   }
-
 }
